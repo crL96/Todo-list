@@ -98,8 +98,10 @@ const contentUI = (function() {
     
             const editBtn = document.createElement("button");
             editBtn.classList.add("editTask");
+            editBtn.setAttribute("value", taskIndex);
             editBtn.textContent = "Edit";
             taskContainer.appendChild(editBtn);
+            handleTaskEdit(editBtn);
             
             container.appendChild(taskContainer);
             taskIndex++;
@@ -114,18 +116,59 @@ const contentUI = (function() {
             });
     }
 
+
+// EDIT TASK
+// EDIT Task button to open form
+    let selectedTask = 0;
+    function handleTaskEdit(editBtn) {
+        editBtn.addEventListener("click", (e) => {
+            const editTaskForm = document.querySelector("#editTaskForm");
+
+            selectedTask = projects.list[selectedProjectIndex].tasks[e.target.value];
+            const nameEl = document.getElementById("editTaskName");
+            const descEl = document.getElementById("editTaskDescription");
+            const dueDateEl = document.getElementById("editDueDate");
+            const prioEl = document.getElementById("editPrio");
+
+            nameEl.value = selectedTask.name;
+            descEl.value = selectedTask.desc;
+            dueDateEl.value = selectedTask.dueDate;
+            prioEl.value = selectedTask.prio;
+
+            editTaskForm.showModal();
+        });
+    }
+// Submit EDIT Task button in dialog/form
+    const btnEditTaskSubmit = document.querySelector("#btnEditTaskSubmit");
+    btnEditTaskSubmit.addEventListener("click", () => {
+        const nameEl = document.getElementById("editTaskName");
+        const descEl = document.getElementById("editTaskDescription");
+        const dueDateEl = document.getElementById("editDueDate");
+        const prioEl = document.getElementById("editPrio");
+
+        const name = nameEl.value;
+        const desc = descEl.value;
+        const dueDate = dueDateEl.value;
+        const prio = prioEl.value;
+
+        
+
+        selectedTask.updateTask(name, desc, dueDate, prio);
+        editTaskForm.close();
+        contentUI.renderProject(selectedProjectIndex);
+    });
     
 
     // New task button
     const btnAddTaskForm = document.querySelector("#btnAddTaskForm");
     const addTaskForm = document.querySelector("#addTaskForm");
-    const btnAddTaskSubmit = document.querySelector("#btnAddTaskSubmit");
-
+    
     btnAddTaskForm.addEventListener("click", () => {
         addTaskForm.showModal();
     });
-
+    
     // Submit Task button in dialog/form
+    const btnAddTaskSubmit = document.querySelector("#btnAddTaskSubmit");
     btnAddTaskSubmit.addEventListener("click", () => {
         const nameEl = document.getElementById("taskName");
         const descEl = document.getElementById("taskDescription");
