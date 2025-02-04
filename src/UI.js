@@ -1,5 +1,7 @@
 import { projects } from "./projects.js";
 
+let selectedProjectIndex = 0;
+
 const sidebarUI = (function() {
 
     function renderProjectList(allProjects) {
@@ -37,6 +39,7 @@ const sidebarUI = (function() {
         const projectList = document.querySelector("#projectList");
         projectList.addEventListener("click", (e) => {
                 contentUI.renderProject(e.target.value);
+                selectedProjectIndex = e.target.value;
             });
 
     }
@@ -93,6 +96,35 @@ const contentUI = (function() {
             container.appendChild(taskContainer);
         }
     }
+
+    // New task button
+    const btnAddTaskForm = document.querySelector("#btnAddTaskForm");
+    const addTaskForm = document.querySelector("#addTaskForm");
+    const btnAddTaskSubmit = document.querySelector("#btnAddTaskSubmit");
+
+    btnAddTaskForm.addEventListener("click", () => {
+        addTaskForm.showModal();
+    });
+
+    // Submit Task button in dialog/form
+    btnAddTaskSubmit.addEventListener("click", () => {
+        const nameEl = document.getElementById("taskName");
+        const descEl = document.getElementById("taskDescription");
+        const dueDateEl = document.getElementById("dueDate");
+        const prioEl = document.getElementById("prio");
+        const name = nameEl.value;
+        const desc = descEl.value;
+        const dueDate = dueDateEl.value;
+        const prio = prioEl.value;
+
+        projects.list[selectedProjectIndex].addTask(name, desc, dueDate, prio);
+        addTaskForm.close();
+        nameEl.value = ""; //Clear fields
+        descEl.value = "";
+        dueDateEl.value = "";
+        prioEl.value = "";
+        contentUI.renderProject(selectedProjectIndex);
+    });
 
     return {renderProject};
 })();
