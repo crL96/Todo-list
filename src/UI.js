@@ -55,6 +55,7 @@ const contentUI = (function() {
         container.replaceChildren();
         const currentProject = projects.list[index];
     
+        let taskIndex = 0;
         for (let task of currentProject.tasks) {
             const taskContainer = document.createElement("div");
             taskContainer.classList.add("task");
@@ -85,8 +86,10 @@ const contentUI = (function() {
             
             const deleteBtn = document.createElement("button");
             deleteBtn.classList.add("deleteTask");
+            deleteBtn.setAttribute("value", taskIndex);
             deleteBtn.textContent = "Delete";
             taskContainer.appendChild(deleteBtn);
+            handelTaskDelete(deleteBtn);
     
             const editBtn = document.createElement("button");
             editBtn.classList.add("editTask");
@@ -94,8 +97,19 @@ const contentUI = (function() {
             taskContainer.appendChild(editBtn);
             
             container.appendChild(taskContainer);
+            taskIndex++;
         }
     }
+
+    // 
+    function handelTaskDelete(deleteBtn) {
+        deleteBtn.addEventListener("click", (e) => {
+                projects.list[selectedProjectIndex].deleteTask(e.target.value);
+                renderProject(selectedProjectIndex);
+            });
+    }
+
+    
 
     // New task button
     const btnAddTaskForm = document.querySelector("#btnAddTaskForm");
