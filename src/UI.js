@@ -54,7 +54,12 @@ const contentUI = (function() {
         const container = document.querySelector("#projectContainer");
         container.replaceChildren();
         const currentProject = projects.list[index];
-    
+        
+        const projectName = document.createElement("h2");
+        projectName.classList.add("projectHeader");
+        projectName.textContent = currentProject.name;
+        container.appendChild(projectName);
+
         let taskIndex = 0;
         for (let task of currentProject.tasks) {
             const taskContainer = document.createElement("div");
