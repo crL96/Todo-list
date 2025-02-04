@@ -10,4 +10,8 @@ export default class Task {
     changeDoneStatus() {
         this.doneStatus = !(this.doneStatus);
     }
+
+    changePrio(newPrio) {
+        this.prio = newPrio;
+    }
 }
