@@ -1,4 +1,4 @@
-import { allProjects } from "./projects.js";
+import { projects } from "./projects.js";
 
 const sidebarUI = (function() {
 
@@ -21,9 +21,9 @@ const sidebarUI = (function() {
         const ElName = document.getElementById("projectName");
         const valueName = ElName.value;
         if (!(valueName === "")) {
-            allProjects.addNewProject(valueName.trim());
+            projects.addNewProject(valueName.trim());
             ElName.value = "";
-            sidebarUI.renderProjectList(allProjects.projectList);
+            sidebarUI.renderProjectList(projects.list);
         }
     });
 

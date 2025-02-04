@@ -16,17 +16,17 @@ class Project {
     }
 }
 
-const allProjects = (function(){
-    const projectList = [];
+const projects = (function(){
+    const list = [];
 
     function addNewProject(name) {
-        projectList.push(new Project(name));
+        list.push(new Project(name));
     }
 
-    return {addNewProject, projectList};
+    return {addNewProject, list};
 })();
 
-allProjects.addNewProject("Default project");
+projects.addNewProject("Default project");
 
 
-export { Project, allProjects };
+export { projects };
