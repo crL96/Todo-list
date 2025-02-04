@@ -6,13 +6,18 @@ const sidebarUI = (function() {
         const projectList = document.querySelector("#projectList");
         projectList.replaceChildren();
 
+        let index = 0;
         for (let project of allProjects) {
             const projectListItem = document.createElement("li");
             const projectTitle = document.createElement("button");
+            projectTitle.classList.add("projectSelectBtn");
+            projectTitle.setAttribute("value", index);
             projectTitle.textContent = project.name;
             projectListItem.appendChild(projectTitle);
             projectList.appendChild(projectListItem);
+            index++;
         }
+        handleProjectSelect();
     }
 
     // New Project Button
@@ -26,6 +31,16 @@ const sidebarUI = (function() {
             sidebarUI.renderProjectList(projects.list);
         }
     });
+
+    // Make project buttons clickable and render selected project to content
+    function handleProjectSelect() {
+        const projectList = document.querySelector("#projectList");
+        projectList.addEventListener("click", (e) => {
+                console.log(e.target.value);
+                contentUI.renderProject(e.target.value);
+            });
+
+    }
 
     return {renderProjectList};
 })();
