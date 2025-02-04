@@ -16,18 +16,23 @@
         <input type="text" name="projectName" id="projectName" autocomplete="off">
         <button type="button" id="btnAddProject">New</button>
 
-        <!-- <button id="btnAddProjectForm" type="button" data-open-modal>New Project</button>
-        <dialog data-modal id="addProjectForm">
+    </div>
+    
+    <div class="mainContent">
+        <div id="projectContainer">
+        </div>
+        <button id="btnAddTaskForm" type="button" data-open-modal>New Task</button>
+        <dialog data-modal id="addTaskForm">
             <form action="" method="post">
                 <div id="formContainer">
-                    <legend>Add New Project</legend>
+                    <legend>Add New Task</legend>
                     <div>
-                        <label for="projectName">Name:</label>
-                        <input type="text" name="name" id="projectName">
+                        <label for="taskName">Name:</label>
+                        <input type="text" name="name" id="taskName">
                     </div>
                     <div>
-                        <label for="projectDescription">Description:</label>
-                        <input type="textarea" name="description" id="projectDescription">
+                        <label for="taskDescription">Description:</label>
+                        <input type="textarea" name="description" id="taskDescription">
                     </div>
                     <div>
                         <label for="dueDate">Due Date:</label>
@@ -41,26 +46,40 @@
                             <option value="high">High</option>
                         </select>
                     </div>
-                    <button type="button" id="btnAddProjectSubmit" data-close-modal>Add</button>
+                    <button type="button" id="btnAddTaskSubmit" data-close-modal>Add</button>
                 </div>
             </form>
-        </dialog> -->
+        </dialog>
     </div>
 
-    <div id="projectContainer">
-        <div>
-            <h2>project name</h2>
-            <p>eat some food</p>
-        </div>
-        <div>
-            <h2>project name</h2>
-            <p>eat some food</p>
-        </div>
-        <div>
-            <h2>project name</h2>
-            <p>eat some food</p>
-        </div>
-    </div>
+    <dialog data-modal id="editTaskForm">
+        <form action="" method="post">
+            <div id="editContainer" class="formContainer">
+                <legend>Edit Task</legend>
+                <div>
+                    <label for="editTaskName">Name:</label>
+                    <input type="text" name="name" id="editTaskName">
+                </div>
+                <div>
+                    <label for="editTaskDescription">Description:</label>
+                    <input type="textarea" name="description" id="editTaskDescription">
+                </div>
+                <div>
+                    <label for="editDueDate">Due Date:</label>
+                    <input type="date" name="dueDate" id="editDueDate">
+                </div>
+                <div>
+                    <label for="editPrio">Priority:</label>
+                    <select name="prio" id="editPrio">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <button type="button" id="btnEditTaskSubmit" data-close-modal>Save</button>
+            </div>
+        </form>
+    </dialog>
     
 </body>
 </html>
