@@ -3,9 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Todo List</title>
 </head>
 <body>
+    <div class="sidebar">
+        <h1>Todo List</h1>
+        <h2>Projects</h2>
+        <ul id="projectList">
+
+        </ul>
+
+        <input type="text" name="projectName" id="projectName" autocomplete="off">
+        <button type="button" id="btnAddProject">New</button>
+
+        <!-- <button id="btnAddProjectForm" type="button" data-open-modal>New Project</button>
+        <dialog data-modal id="addProjectForm">
+            <form action="" method="post">
+                <div id="formContainer">
+                    <legend>Add New Project</legend>
+                    <div>
+                        <label for="projectName">Name:</label>
+                        <input type="text" name="name" id="projectName">
+                    </div>
+                    <div>
+                        <label for="projectDescription">Description:</label>
+                        <input type="textarea" name="description" id="projectDescription">
+                    </div>
+                    <div>
+                        <label for="dueDate">Due Date:</label>
+                        <input type="date" name="dueDate" id="dueDate">
+                    </div>
+                    <div>
+                        <label for="prio">Priority:</label>
+                        <select name="prio" id="prio">
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                    <button type="button" id="btnAddProjectSubmit" data-close-modal>Add</button>
+                </div>
+            </form>
+        </dialog> -->
+    </div>
+
+    <div id="projectContainer">
+        <div>
+            <h2>project name</h2>
+            <p>eat some food</p>
+        </div>
+        <div>
+            <h2>project name</h2>
+            <p>eat some food</p>
+        </div>
+        <div>
+            <h2>project name</h2>
+            <p>eat some food</p>
+        </div>
+    </div>
     
 </body>
 </html>
