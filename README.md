@@ -1,5 +1,3 @@
-# webpack-template
+# Todo List
 
-Template repository
-
-Set up for use with webpack
+A pretty straight forward Todo List web application written in Javascript.
