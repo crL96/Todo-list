@@ -36,7 +36,6 @@ const sidebarUI = (function() {
     function handleProjectSelect() {
         const projectList = document.querySelector("#projectList");
         projectList.addEventListener("click", (e) => {
-                console.log(e.target.value);
                 contentUI.renderProject(e.target.value);
             });
 
