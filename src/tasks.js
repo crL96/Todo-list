@@ -14,4 +14,11 @@ export default class Task {
     changePrio(newPrio) {
         this.prio = newPrio;
     }
+
+    updateTask(name, desc, dueDate, prio) {
+        this.name = name;
+        this.desc = desc;
+        this.dueDate = dueDate;
+        this.prio = prio;
+    }
 }
