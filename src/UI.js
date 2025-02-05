@@ -70,15 +70,15 @@ const contentUI = (function() {
             taskContainer.appendChild(name);
     
             const desc = document.createElement("p");
-            desc.textContent = task.desc;
+            desc.textContent = "Description: " + task.desc;
             taskContainer.appendChild(desc);
     
             const dueDate = document.createElement("p");
-            dueDate.textContent = task.dueDate;
+            dueDate.textContent = "Due Date: " + task.dueDate;
             taskContainer.appendChild(dueDate);
     
             const prio = document.createElement("p");
-            prio.textContent = task.prio;
+            prio.textContent = "Priority: " + task.prio;
             taskContainer.appendChild(prio);
     
             const checkTitle = document.createElement("span");
