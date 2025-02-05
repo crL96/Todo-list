@@ -1,4 +1,5 @@
 import { projects } from "./projects.js";
+import { storage } from "./storage.js";
 
 let selectedProjectIndex = 0;
 
@@ -31,6 +32,7 @@ const sidebarUI = (function() {
             projects.addNewProject(valueName.trim());
             ElName.value = "";
             sidebarUI.renderProjectList(projects.list);
+            storage.saveProjects();
         }
     });
 
@@ -113,6 +115,7 @@ const contentUI = (function() {
         deleteBtn.addEventListener("click", (e) => {
                 projects.list[selectedProjectIndex].deleteTask(e.target.value);
                 renderProject(selectedProjectIndex);
+                storage.saveProjects();
             });
     }
 
@@ -156,6 +159,7 @@ const contentUI = (function() {
         selectedTask.updateTask(name, desc, dueDate, prio);
         editTaskForm.close();
         contentUI.renderProject(selectedProjectIndex);
+        storage.saveProjects();
     });
     
 
@@ -186,6 +190,7 @@ const contentUI = (function() {
         dueDateEl.value = "";
         prioEl.value = "";
         contentUI.renderProject(selectedProjectIndex);
+        storage.saveProjects();
     });
 
     return {renderProject};
