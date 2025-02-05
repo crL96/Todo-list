@@ -23,10 +23,12 @@ const projects = (function(){
         list.push(new Project(name));
     }
 
-    return {addNewProject, list};
-})();
+    function clearAllProjects() {
+        list.splice(0);
+    }
 
-projects.addNewProject("Default project");
+    return {addNewProject, list, clearAllProjects};
+})();
 
 
 export { projects };
