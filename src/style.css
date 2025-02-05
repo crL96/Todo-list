@@ -174,7 +174,8 @@ li > button:hover {
 
 .deleteTask:hover,
 .editTask:hover,
-#btnAddTaskForm:hover {
+#btnAddTaskForm:hover,
+#btnDeleteProject:hover {
     box-shadow: 1px 1px 5px grey;
 }
 
@@ -188,6 +189,18 @@ li > button:hover {
     position: absolute;
     right: 2rem;
     top: 1.5rem;
+}
+
+#btnDeleteProject {
+    background-color: rgb(192, 54, 54);
+    border: none;
+    border-radius: 1rem;
+    padding: 0.3rem 1rem;
+    color: white;
+
+    position: fixed;
+    right: 2rem;
+    bottom: 1.5rem;
 }
 
 .deleteTask {

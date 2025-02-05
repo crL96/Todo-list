@@ -162,6 +162,17 @@ const contentUI = (function() {
         storage.saveProjects();
     });
     
+    // Delete Project button
+    const btnDeleteProject = document.querySelector("#btnDeleteProject");
+    btnDeleteProject.addEventListener("click", () => {
+        projects.deleteProject(selectedProjectIndex);
+        if (projects.list.length === 0) {
+            projects.addNewProject("Default Project");
+        }
+        storage.saveProjects();
+        contentUI.renderProject(0);
+        sidebarUI.renderProjectList(projects.list);
+    });
 
     // New task button
     const btnAddTaskForm = document.querySelector("#btnAddTaskForm");

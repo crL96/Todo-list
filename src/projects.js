@@ -27,7 +27,11 @@ const projects = (function(){
         list.splice(0);
     }
 
-    return {addNewProject, list, clearAllProjects};
+    function deleteProject(index) {
+        list.splice(index, 1);
+    }
+
+    return {addNewProject, list, clearAllProjects, deleteProject};
 })();
 
 
