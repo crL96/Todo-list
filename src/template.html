@@ -21,9 +21,9 @@
     <div class="mainContent">
         <div id="projectContainer">
         </div>
-        <button id="btnAddTaskForm" type="button" data-open-modal>New Task</button>
-        <dialog data-modal id="addTaskForm">
-            <form action="" method="post">
+        <button id="btnOpenAddTaskForm" type="button" data-open-modal>New Task</button>
+        <dialog data-modal id="addTaskDialog">
+            <form action="" method="post" id="addTaskForm">
                 <div id="formContainer">
                     <legend>Add New Task</legend>
                     <div>
@@ -46,7 +46,7 @@
                             <option value="High">High</option>
                         </select>
                     </div>
-                    <button type="button" id="btnAddTaskSubmit" data-close-modal>Add</button>
+                    <button type="submit" id="btnAddTaskSubmit" data-close-modal>Add</button>
                 </div>
             </form>
         </dialog>
@@ -54,8 +54,8 @@
         <button type="button" id="btnDeleteProject">Delete Project</button>
     </div>
 
-    <dialog data-modal id="editTaskForm">
-        <form action="" method="post">
+    <dialog data-modal id="editTaskDialog">
+        <form action="" method="post" id="editTaskForm">
             <div id="editContainer" class="formContainer">
                 <legend>Edit Task</legend>
                 <div>
@@ -78,7 +78,7 @@
                         <option value="High">High</option>
                     </select>
                 </div>
-                <button type="button" id="btnEditTaskSubmit" data-close-modal>Save</button>
+                <button type="submit" id="btnEditTaskSubmit" data-close-modal>Save</button>
             </div>
         </form>
     </dialog>

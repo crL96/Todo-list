@@ -123,9 +123,10 @@ const contentUI = (function() {
 // EDIT TASK
 // EDIT Task button to open form
     let selectedTask = 0;
+    const editTaskDialog = document.querySelector("#editTaskDialog");
+
     function handleTaskEdit(editBtn) {
         editBtn.addEventListener("click", (e) => {
-            const editTaskForm = document.querySelector("#editTaskForm");
 
             selectedTask = projects.list[selectedProjectIndex].tasks[e.target.value];
             const nameEl = document.getElementById("editTaskName");
@@ -138,26 +139,23 @@ const contentUI = (function() {
             dueDateEl.value = selectedTask.dueDate;
             prioEl.value = selectedTask.prio;
 
-            editTaskForm.showModal();
+            editTaskDialog.showModal();
         });
     }
 // Submit EDIT Task button in dialog/form
-    const btnEditTaskSubmit = document.querySelector("#btnEditTaskSubmit");
-    btnEditTaskSubmit.addEventListener("click", () => {
-        const nameEl = document.getElementById("editTaskName");
-        const descEl = document.getElementById("editTaskDescription");
-        const dueDateEl = document.getElementById("editDueDate");
-        const prioEl = document.getElementById("editPrio");
+    const editTaskForm = document.querySelector("#editTaskForm");
+    editTaskForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const formdata = new FormData(editTaskForm);
+        const updatedTask = Object.fromEntries(formdata);
 
-        const name = nameEl.value;
-        const desc = descEl.value;
-        const dueDate = dueDateEl.value;
-        const prio = prioEl.value;
-
-        
-
-        selectedTask.updateTask(name, desc, dueDate, prio);
-        editTaskForm.close();
+        selectedTask.updateTask(
+            updatedTask.name, 
+            updatedTask.description, 
+            updatedTask.dueDate, 
+            updatedTask.prio
+        );
+        editTaskDialog.close();
         contentUI.renderProject(selectedProjectIndex);
         storage.saveProjects();
     });
@@ -175,31 +173,28 @@ const contentUI = (function() {
     });
 
     // New task button
-    const btnAddTaskForm = document.querySelector("#btnAddTaskForm");
+    const btnOpenAddTaskForm = document.querySelector("#btnOpenAddTaskForm");
+    const addTaskDialog = document.querySelector("#addTaskDialog");
     const addTaskForm = document.querySelector("#addTaskForm");
     
-    btnAddTaskForm.addEventListener("click", () => {
-        addTaskForm.showModal();
+    btnOpenAddTaskForm.addEventListener("click", () => {
+        addTaskDialog.showModal();
     });
     
     // Submit Task button in dialog/form
-    const btnAddTaskSubmit = document.querySelector("#btnAddTaskSubmit");
-    btnAddTaskSubmit.addEventListener("click", () => {
-        const nameEl = document.getElementById("taskName");
-        const descEl = document.getElementById("taskDescription");
-        const dueDateEl = document.getElementById("dueDate");
-        const prioEl = document.getElementById("prio");
-        const name = nameEl.value;
-        const desc = descEl.value;
-        const dueDate = dueDateEl.value;
-        const prio = prioEl.value;
+    addTaskForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const formdata = new FormData(addTaskForm);
+        const newTask = Object.fromEntries(formdata);
 
-        projects.list[selectedProjectIndex].addTask(name, desc, dueDate, prio);
-        addTaskForm.close();
-        nameEl.value = ""; //Clear fields
-        descEl.value = "";
-        dueDateEl.value = "";
-        prioEl.value = "";
+        projects.list[selectedProjectIndex].addTask(
+            newTask.name, 
+            newTask.description, 
+            newTask.dueDate, 
+            newTask.prio
+        );
+        addTaskDialog.close();
+        addTaskForm.reset();
         contentUI.renderProject(selectedProjectIndex);
         storage.saveProjects();
     });

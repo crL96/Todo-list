@@ -179,7 +179,7 @@ li > button:hover {
     box-shadow: 1px 1px 5px grey;
 }
 
-#btnAddTaskForm {
+#btnOpenAddTaskForm {
     background-color: var(--mainclr);
     border: none;
     border-radius: 1rem;
